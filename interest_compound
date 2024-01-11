@@ -1,0 +1,34 @@
+current_money = 10
+monthly_payment = 10
+monthly_payment_sum = 0
+
+#  1.00 %, 0.1 % = 10%, 0.05% = 5%, 0.0005% = 0.05%
+daily_gain_percentage = 0.0002  # Daily gain percentage
+
+days = 1
+year = 365
+month = 30
+
+
+while days <= 5476:  
+    daily_gain = current_money * daily_gain_percentage  
+    current_money += daily_gain
+    days += 1
+
+    if days == month:
+        month += 30
+        current_money += monthly_payment
+        monthly_payment_sum = monthly_payment_sum + monthly_payment
+
+    if days < year:
+        pass
+    else:
+        year += 365
+        print(f"\nyear: {int(days / 365)}\n\
+            day: {days}\n\
+            total: {round(current_money, 2)} EUR\n\
+            every month payment: {monthly_payment} EUR\n\
+            month payment sum: {monthly_payment_sum} EUR\n\
+            profit: {round(current_money - monthly_payment_sum, 2)}\n\
+            intrest: {daily_gain_percentage}\n\
+            #0.1 % = 10%, 0.05% = 5%, 0.0005% = 0.05%")
