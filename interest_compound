@@ -1,20 +1,27 @@
-current_money = 10
-monthly_payment = 10
-monthly_payment_sum = 0
+import random
 
-#  1.00 %, 0.1 % = 10%, 0.05% = 5%, 0.0005% = 0.05%
-daily_gain_percentage = 0.0002  # Daily gain percentage
+
+#### CHANGE THESE PARAMETERS
+current_money = 10
+monthly_payment = 50
+daily_gain_percentages = (0.0001, 0.001)  #, 0.5 = 50%, 0.05 = 5%, 0.0005 = 0.05%
+investment_duration_in_years = 7
+
+### 
 
 days = 1
 year = 365
 month = 30
+monthly_payment_sum = 0
+time_days = investment_duration_in_years * year
 
+while days <= time_days:  
+    daily_gain_percentage = random.uniform(daily_gain_percentages[0], daily_gain_percentages[1])
 
-while days <= 5476:  
     daily_gain = current_money * daily_gain_percentage  
     current_money += daily_gain
     days += 1
-
+        
     if days == month:
         month += 30
         current_money += monthly_payment
@@ -30,5 +37,6 @@ while days <= 5476:
             every month payment: {monthly_payment} EUR\n\
             month payment sum: {monthly_payment_sum} EUR\n\
             profit: {round(current_money - monthly_payment_sum, 2)}\n\
-            intrest: {daily_gain_percentage}\n\
+            intrest: {round(daily_gain_percentage * 100, 2)}\n\
             #0.1 % = 10%, 0.05% = 5%, 0.0005% = 0.05%")
+        
